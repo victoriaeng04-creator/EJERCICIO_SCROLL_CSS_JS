@@ -122,7 +122,11 @@
    ========================================================= */
 
 /* Escribe aquí tus @keyframes (fuera de capas) */
-
+@keyframes crecer-barra {
+    to {
+        transform: scaleX(1);
+    }
+}
 
 
 /* Y aquí las animaciones, solo para los navegadores que las entienden */
@@ -131,7 +135,10 @@
 
         /* TAREA 1 · Barra de progreso (.barra-progreso)
            Línea de tiempo: scroll(root). Anima transform: scaleX(0) -> scaleX(1). */
-
+          .barra-progreso{
+            animation: crecer-barra linear both;
+            animation-timeline: scroll(root);
+          }
 
         /* TAREA 2 · Aparecer (.revelar)
            Línea de tiempo: view(). Prueba animation-range: entry 10% cover 30%.
