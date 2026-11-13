@@ -130,7 +130,7 @@
 
 @keyframes aparecer{
     from {
-        opacity: o;
+        opacity: 0;
         transform: translateY(3rem) scale(0.95);
     }
     to{
@@ -139,6 +139,11 @@
     }
 }
 
+
+@keyframes parallax {
+    from { transform: translateY(-30%);}
+    to { transform: translateY(0);}
+}
 
 /* Y aquí las animaciones, solo para los navegadores que las entienden */
 @supports (animation-timeline: view()) {
@@ -163,7 +168,10 @@
         /* TAREA 3 · Parallax de la foto (.marco-parallax img)
            Línea de tiempo: view(). La imagen mide un 125 % del marco:
            muévela de translateY(-20%) a translateY(0). */
-
+          .marco-parallax img {
+            animation: paralax linear both;
+            animation-timeline: view();
+          }
 
         /* TAREA 4 · La portada se aleja al salir (.portada-texto)
            Línea de tiempo: view(). Rango: exit 0% exit 90%. */
