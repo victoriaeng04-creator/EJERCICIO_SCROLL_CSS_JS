@@ -128,6 +128,17 @@
     }
 }
 
+@keyframes aparecer{
+    from {
+        opacity: o;
+        transform: translateY(3rem) scale(0.95);
+    }
+    to{
+        opacity: 1;
+        transform: none;
+    }
+}
+
 
 /* Y aquí las animaciones, solo para los navegadores que las entienden */
 @supports (animation-timeline: view()) {
@@ -143,7 +154,11 @@
         /* TAREA 2 · Aparecer (.revelar)
            Línea de tiempo: view(). Prueba animation-range: entry 10% cover 30%.
            Bonus: escalona las tarjetas (.tarjeta:nth-child(3n + 2) y (3n)). */
-
+          .revelar {
+                animation: aparecer linear both;
+                animation-timeline: view();
+                animation-range: entry 10% cover 40%;
+          }
 
         /* TAREA 3 · Parallax de la foto (.marco-parallax img)
            Línea de tiempo: view(). La imagen mide un 125 % del marco:
