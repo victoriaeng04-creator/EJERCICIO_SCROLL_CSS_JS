@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Aguja y el Tornillo · Desde 1962 en Lavapiés</title>
+
+    <!-- Tipografías -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,400;1,9..144,700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- TAREA 5 · CSS recomendado de Lenis (antes que el nuestro) -->
+
+    <!-- Nuestro CSS: aquí van todas las animaciones ligadas al scroll -->
+    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- Tailwind -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+        @theme static {
+            --color-fondo: #f4ecdc;
+            --color-superficie: #fffaf0;
+            --color-texto: #2a1a10;
+            --color-suave: #6e5236;
+            --color-acento: #93362a;
+            --color-borde: #d9c7a3;
+            --color-laton: #b98a3e;
+
+            --font-rotulo: "Fraunces", Georgia, serif;
+            --font-texto: "Work Sans", system-ui, sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-fondo font-texto text-texto antialiased">
+
+    <!-- TAREA 1 · Barra de progreso de lectura: scroll() -->
+    <div class="barra-progreso" aria-hidden="true"></div>
+
+    <!-- ================= CABECERA ================= -->
+    <header class="sticky top-0 z-30 border-b border-borde bg-fondo/95 backdrop-blur">
+        <div class="mx-auto flex max-w-6xl items-center justify-between gap-6 px-5 py-4">
+            <a href="#inicio" class="font-rotulo text-xl leading-tight font-bold md:text-2xl">
+                La Aguja <span class="text-acento">&amp;</span> el Tornillo
+            </a>
+            <nav aria-label="Principal">
+                <ul class="hidden gap-8 text-sm font-medium md:flex">
+                    <li><a href="#historia" class="hover:text-acento">Historia</a></li>
+                    <li><a href="#productos" class="hover:text-acento">Productos</a></li>
+                    <li><a href="#escaparate" class="hover:text-acento">Escaparate</a></li>
+                    <li><a href="#visitanos" class="hover:text-acento">Visítanos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- ================= PORTADA ================= -->
+        <section id="inicio" class="mx-auto grid max-w-6xl items-center gap-10 px-5 py-16 md:grid-cols-2 md:py-24">
+            <!-- TAREA 4 · La portada se aleja al salir de pantalla: view() + rango exit -->
+            <div class="portada-texto">
+                <p class="text-sm font-semibold uppercase tracking-[0.3em] text-suave">Ferretería y mercería · Lavapiés</p>
+                <h1 class="mt-5 font-rotulo text-5xl leading-[1.05] font-bold md:text-7xl">
+                    Desde 1962, <span class="text-acento italic">tornillo a tornillo.</span>
+                </h1>
+                <p class="mt-6 max-w-md text-lg text-suave">
+                    Baja despacio: esta página cuenta la historia de la tienda a medida que haces scroll.
+                </p>
+                <a href="#historia" class="mt-10 inline-block rounded-full bg-acento px-8 py-3 font-semibold text-fondo hover:opacity-90">
+                    Empezar el recorrido
+                </a>
+            </div>
+
+            <!-- TAREA 3 · Parallax de la foto: view() -->
+            <figure class="marco-parallax aspect-[4/5] overflow-hidden rounded-[2rem] border border-borde md:aspect-[4/5]">
+                <img src="img/tienda.jpg" alt="Interior de una mercería antigua con estanterías de madera llenas de cajas" class="h-[125%] w-full object-cover">
+            </figure>
+        </section>
+
+        <!-- ================= HISTORIA ================= -->
+        <section id="historia" class="border-y border-borde bg-superficie py-24">
+            <div class="mx-auto max-w-3xl px-5">
+                <h2 class="revelar font-rotulo text-4xl font-bold md:text-5xl">Sesenta años detrás del mostrador</h2>
+
+                <!-- La línea vertical "se dibuja" mientras recorres la sección -->
+                <ol class="linea-tiempo relative mt-14 space-y-16 pl-10">
+                    <li class="revelar">
+                        <p class="font-rotulo text-3xl font-bold text-acento">1962</p>
+                        <p class="mt-2 text-lg">Carmen y Tomás abren una mercería de dos metros de fachada en la calle del Carmen.</p>
+                    </li>
+                    <li class="revelar">
+                        <p class="font-rotulo text-3xl font-bold text-acento">1985</p>
+                        <p class="mt-2 text-lg">Se quedan con el local de al lado y llegan los tornillos: nace la ferretería.</p>
+                    </li>
+                    <li class="revelar">
+                        <p class="font-rotulo text-3xl font-bold text-acento">2004</p>
+                        <p class="mt-2 text-lg">Lucía, la nieta, coge el relevo y empieza a hacer copias de llaves en el momento.</p>
+                    </li>
+                    <li class="revelar">
+                        <p class="font-rotulo text-3xl font-bold text-acento">Hoy</p>
+                        <p class="mt-2 text-lg">Más de 4.000 referencias y la misma pregunta de siempre: «¿qué necesitas arreglar?».</p>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- ================= PRODUCTOS ================= -->
+        <section id="productos" class="mx-auto max-w-6xl px-5 py-24">
+            <h2 class="revelar font-rotulo text-4xl font-bold md:text-5xl">Lo más pedido</h2>
+            <p class="revelar mt-3 text-suave">Cada tarjeta entra cuando aparece en pantalla.</p>
+
+            <!-- TAREA 2 · Entradas con view() y animation-range (escalonadas por columna) -->
+            <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                <article class="revelar tarjeta rounded-2xl border border-borde bg-superficie p-6">
+                    <p class="text-xs font-semibold tracking-[0.2em] text-suave">N.º 01</p>
+                    <h3 class="mt-3 font-rotulo text-2xl font-bold">Hilo de algodón</h3>
+                    <p class="mt-2 text-suave">Bobina de 500 m. Más de 80 colores en el expositor.</p>
+                    <p class="mt-6 font-rotulo text-3xl font-bold text-acento">1,80 €</p>
+                </article>
+                <article class="revelar tarjeta rounded-2xl border border-borde bg-superficie p-6">
+                    <p class="text-xs font-semibold tracking-[0.2em] text-suave">N.º 02</p>
+                    <h3 class="mt-3 font-rotulo text-2xl font-bold">Botones de nácar</h3>
+                    <p class="mt-2 text-suave">La docena. Cuatro agujeros, de 11 a 20 mm.</p>
+                    <p class="mt-6 font-rotulo text-3xl font-bold text-acento">4,50 €</p>
+                </article>
+                <article class="revelar tarjeta rounded-2xl border border-borde bg-superficie p-6">
+                    <p class="text-xs font-semibold tracking-[0.2em] text-suave">N.º 03</p>
+                    <h3 class="mt-3 font-rotulo text-2xl font-bold">Cinta métrica</h3>
+                    <p class="mt-2 text-suave">De modista, 150 cm, con remates metálicos.</p>
+                    <p class="mt-6 font-rotulo text-3xl font-bold text-acento">2,95 €</p>
+                </article>
+                <article class="revelar tarjeta rounded-2xl border border-borde bg-superficie p-6">
+                    <p class="text-xs font-semibold tracking-[0.2em] text-suave">N.º 04</p>
+                    <h3 class="mt-3 font-rotulo text-2xl font-bold">Tornillos para madera</h3>
+                    <p class="mt-2 text-suave">Caja de 100, cabeza plana. También sueltos.</p>
+                    <p class="mt-6 font-rotulo text-3xl font-bold text-acento">3,20 €</p>
+                </article>
+                <article class="revelar tarjeta rounded-2xl border border-borde bg-superficie p-6">
+                    <p class="text-xs font-semibold tracking-[0.2em] text-suave">N.º 05</p>
+                    <h3 class="mt-3 font-rotulo text-2xl font-bold">Martillo de carpintero</h3>
+                    <p class="mt-2 text-suave">Mango de fresno y orejas para sacar clavos.</p>
+                    <p class="mt-6 font-rotulo text-3xl font-bold text-acento">12,90 €</p>
+                </article>
+                <article class="revelar tarjeta rounded-2xl border border-borde bg-superficie p-6">
+                    <p class="text-xs font-semibold tracking-[0.2em] text-suave">N.º 06</p>
+                    <h3 class="mt-3 font-rotulo text-2xl font-bold">Bombilla de filamento</h3>
+                    <p class="mt-2 text-suave">Rosca gorda E27, luz cálida de las de antes.</p>
+                    <p class="mt-6 font-rotulo text-3xl font-bold text-acento">6,50 €</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- ================= ESCAPARATE (EXTRA) ================= -->
+        <!-- EXTRA 2 · Scroll horizontal: sección alta + contenido sticky + línea de tiempo con nombre -->
+        <section id="escaparate" class="escaparate bg-texto text-fondo" aria-label="Escaparate de temporada">
+            <div class="escaparate-fijo">
+                <div class="mx-auto w-full max-w-6xl px-5">
+                    <p class="text-sm font-semibold uppercase tracking-[0.3em] opacity-70">Escaparate de temporada</p>
+                    <h2 class="mt-3 font-rotulo text-4xl font-bold md:text-5xl">Sigue bajando: el escaparate se mueve de lado</h2>
+                </div>
+                <ul class="escaparate-pista mt-10">
+                    <li class="pieza"><span class="pieza-num">01</span><span class="pieza-nombre">Dedales de latón</span><span class="pieza-precio">2,10 €</span></li>
+                    <li class="pieza"><span class="pieza-num">02</span><span class="pieza-nombre">Cremalleras invisibles</span><span class="pieza-precio">1,60 €</span></li>
+                    <li class="pieza"><span class="pieza-num">03</span><span class="pieza-nombre">Bisagras de cazoleta</span><span class="pieza-precio">3,40 €</span></li>
+                    <li class="pieza"><span class="pieza-num">04</span><span class="pieza-nombre">Ovillos de lana merina</span><span class="pieza-precio">5,90 €</span></li>
+                    <li class="pieza"><span class="pieza-num">05</span><span class="pieza-nombre">Candado de 40 mm</span><span class="pieza-precio">7,50 €</span></li>
+                    <li class="pieza"><span class="pieza-num">06</span><span class="pieza-nombre">Tijeras de sastre</span><span class="pieza-precio">18,00 €</span></li>
+                    <li class="pieza"><span class="pieza-num">07</span><span class="pieza-nombre">Agujas de coser surtidas</span><span class="pieza-precio">1,20 €</span></li>
+                    <li class="pieza"><span class="pieza-num">08</span><span class="pieza-nombre">Llave inglesa de 25 cm</span><span class="pieza-precio">14,80 €</span></li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ================= VISÍTANOS ================= -->
+        <section id="visitanos" class="mx-auto grid max-w-6xl gap-10 px-5 py-24 md:grid-cols-2">
+            <div class="revelar">
+                <h2 class="font-rotulo text-4xl font-bold md:text-5xl">Visítanos</h2>
+                <p class="mt-4 text-lg">Calle del Carmen, 12 · 28012 Madrid</p>
+                <p class="mt-1 text-suave">Metro Lavapiés (línea 3)</p>
+                <a href="#inicio" class="mt-8 inline-block font-semibold text-acento underline underline-offset-4">Volver arriba</a>
+            </div>
+            <div class="revelar rounded-2xl border border-borde bg-superficie p-6">
+                <p class="text-sm font-semibold uppercase tracking-[0.3em] text-suave">Horario</p>
+                <p class="mt-3 font-rotulo text-2xl">Lunes a viernes: 9:30 a 14:00 y 17:00 a 20:30</p>
+                <p class="mt-1 font-rotulo text-2xl">Sábados: 10:00 a 14:00</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="border-t border-borde py-8 text-center text-sm text-suave">
+        La Aguja y el Tornillo · Desde 1962 · Ejercicio de clase, MWHE
+    </footer>
+
+    <!-- TAREA 5 · Lenis desde el CDN, ANTES de nuestro JS -->
+    <script src="js/main.js"></script>
+</body>
+</html>

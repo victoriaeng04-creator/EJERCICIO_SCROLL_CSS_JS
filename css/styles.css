@@ -1,0 +1,176 @@
+/* =========================================================
+   La Aguja y el Tornillo · Animaciones ligadas al scroll
+   ========================================================= */
+
+@layer theme, base, components, utilities;
+
+
+/* ---------- BASE ---------- */
+@layer base {
+    ::selection {
+        background: var(--color-acento);
+        color: var(--color-fondo);
+    }
+    /* OJO: sin "scroll-behavior: smooth". Con Lenis, el scroll suave lo hace Lenis. */
+}
+
+
+/* ---------- COMPONENTES (estado normal, sin animar) ---------- */
+@layer components {
+
+    /* Barra de progreso: fija arriba, empieza vacía */
+    .barra-progreso {
+        position: fixed;
+        inset: 0 0 auto 0;
+        z-index: 50;
+        height: 4px;
+        background: var(--color-acento);
+        transform-origin: 0 50%;
+        transform: scaleX(0);
+    }
+
+    /* Línea del tiempo: línea vertical y un punto por hito */
+    .linea-tiempo::before {
+        content: "";
+        position: absolute;
+        top: 0.6rem;
+        bottom: 0;
+        left: 0.75rem;
+        width: 2px;
+        background: var(--color-acento);
+        transform-origin: 50% 0;
+    }
+    .linea-tiempo li {
+        position: relative;
+    }
+    .linea-tiempo li::before {
+        content: "";
+        position: absolute;
+        top: 0.7rem;
+        left: -2.2rem;
+        width: 1rem;
+        height: 1rem;
+        border: 3px solid var(--color-acento);
+        border-radius: 50%;
+        background: var(--color-superficie);
+    }
+
+    /* Tarjetas: hover de siempre (con transition, no depende del scroll) */
+    .tarjeta {
+        transition: box-shadow 0.3s ease;
+    }
+    .tarjeta:hover {
+        box-shadow: 0 18px 30px -18px rgb(42 26 16 / 0.45);
+    }
+
+    /* Escaparate SIN animación: una fila que se desliza con el dedo o el ratón */
+    .escaparate {
+        padding-block: 6rem;
+    }
+    .escaparate-pista {
+        display: flex;
+        gap: 1.5rem;
+        overflow-x: auto;
+        padding: 0 1.25rem 1rem;
+        list-style: none;
+    }
+    .pieza {
+        display: flex;
+        flex: 0 0 clamp(15rem, 26vw, 22rem);
+        flex-direction: column;
+        justify-content: space-between;
+        aspect-ratio: 3 / 4;
+        padding: 1.5rem;
+        border: 1px solid rgb(244 236 220 / 0.25);
+        border-radius: 1.5rem;
+        background:
+            repeating-linear-gradient(45deg, rgb(244 236 220 / 0.05) 0 2px, transparent 2px 14px),
+            rgb(244 236 220 / 0.04);
+    }
+    .pieza:nth-child(even) {
+        background: var(--color-acento);
+        border-color: transparent;
+    }
+    .pieza-num {
+        font-family: var(--font-rotulo);
+        font-size: 4rem;
+        font-weight: 700;
+        line-height: 1;
+        color: var(--color-laton);
+    }
+    .pieza:nth-child(even) .pieza-num {
+        color: var(--color-fondo);
+    }
+    .pieza-nombre {
+        font-family: var(--font-rotulo);
+        font-size: 1.75rem;
+        font-weight: 700;
+        line-height: 1.1;
+    }
+    .pieza-precio {
+        font-size: 1.1rem;
+        font-weight: 600;
+        opacity: 0.8;
+    }
+}
+
+
+/* =========================================================
+   EJERCICIO · ANIMACIONES LIGADAS AL SCROLL
+   Receta: @keyframes normal + animation SIN duración + animation-timeline
+   OJO: escribe animation-timeline DESPUÉS del atajo "animation" (el atajo la resetea)
+   ========================================================= */
+
+/* Escribe aquí tus @keyframes (fuera de capas) */
+
+
+
+/* Y aquí las animaciones, solo para los navegadores que las entienden */
+@supports (animation-timeline: view()) {
+    @layer components {
+
+        /* TAREA 1 · Barra de progreso (.barra-progreso)
+           Línea de tiempo: scroll(root). Anima transform: scaleX(0) -> scaleX(1). */
+
+
+        /* TAREA 2 · Aparecer (.revelar)
+           Línea de tiempo: view(). Prueba animation-range: entry 10% cover 30%.
+           Bonus: escalona las tarjetas (.tarjeta:nth-child(3n + 2) y (3n)). */
+
+
+        /* TAREA 3 · Parallax de la foto (.marco-parallax img)
+           Línea de tiempo: view(). La imagen mide un 125 % del marco:
+           muévela de translateY(-20%) a translateY(0). */
+
+
+        /* TAREA 4 · La portada se aleja al salir (.portada-texto)
+           Línea de tiempo: view(). Rango: exit 0% exit 90%. */
+
+
+        /* EXTRA 1 · La línea del tiempo se dibuja (.linea-tiempo::before)
+           Pista: view-timeline-name: --historia en .linea-tiempo
+           y animation-timeline: --historia en su ::before. */
+
+
+        /* EXTRA 2 · Escaparate horizontal (.escaparate, .escaparate-fijo, .escaparate-pista)
+           Mira el README: sección de 300vh, interior sticky y pista que se desplaza. */
+
+    }
+}
+
+
+/* ---------- MOVIMIENTO REDUCIDO ----------
+   Fuera de capas para que gane a todo lo anterior. */
+@media (prefers-reduced-motion: reduce) {
+    .barra-progreso,
+    .revelar,
+    .marco-parallax img,
+    .portada-texto,
+    .linea-tiempo::before,
+    .escaparate-pista {
+        animation: none;
+    }
+    .escaparate { height: auto; padding-block: 6rem; }
+    .escaparate-fijo { position: static; height: auto; }
+    .escaparate-pista { width: auto; overflow-x: auto; }
+}
