@@ -12,3 +12,10 @@
 */
 
 // Escribe aquí tu código
+const lenis = new Lenis ({
+   autoRaf: true, // se activa el bucle de animación
+   lerp: 0.05, // suavidad del scroll entre 0 y 1 
+   anchors: {
+      offset: -60
+   } // Scroll a secciones suavizado y offset de 60 px pra que encaje el menu 
+})
