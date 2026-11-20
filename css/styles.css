@@ -139,6 +139,12 @@
     }
 }
 
+        /* EXTRA 2 · Escaparate scroll horizontal */
+@keyframes desplazar {
+    to{
+        transform: translateX( calc (-100% + 100vw))
+    }
+}
 
 @keyframes parallax {
     from { transform: translateY(-30%);}
@@ -184,6 +190,31 @@
 
         /* EXTRA 2 · Escaparate horizontal (.escaparate, .escaparate-fijo, .escaparate-pista)
            Mira el README: sección de 300vh, interior sticky y pista que se desplaza. */
+
+           .escaparate{
+            height: 300vh;
+            padding-block: 0;
+            view-timeline-name: --escaparate;
+           }
+
+           .escaparate-fijo{
+            position: sticky;
+            top: o;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+           }
+
+           .escaparate-pista{
+            width: max-content;
+            overflow: visible;
+            padding-inline: max(1.25rem, calc (100vw - 72 rem) / 2 + 11.25rem); /* hacer el padding así evita tener que usar mediaQueris */
+            animation: desplazar linear both;
+            animation-timeline: --escaparate;
+            animation-range: contain 0% contain 100%;
+           }
 
     }
 }
